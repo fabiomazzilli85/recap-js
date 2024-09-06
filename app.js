@@ -272,3 +272,22 @@ newfilm.addEventListener('click', () => {
     });
     document.body.appendChild(elencoFilm);
 });
+
+// Chiamata API
+fetch('https://randomuser.me/api')
+  .then(response => response.json())
+  .then(data => {
+    const user = data.results[0]; 
+     
+     const nomeElemento = document.getElementById('nome'); 
+     const emailElemento = document.getElementById('email'); 
+     const genderElemento = document.getElementById('gender');
+     const imgElemento = document.getElementById('profile-image'); 
+ 
+     
+     nomeElemento.textContent = `Nome: ${user.name.first} ${user.name.last}`;
+     emailElemento.textContent = `Email: ${user.email}`;
+     genderElemento.textContent = `Genere: ${user.gender}`;
+     imgElemento.src = user.picture.large;
+   })
+   .catch(error => console.error('Errore nella chiamata API:', error));
